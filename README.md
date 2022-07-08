@@ -1,2 +1,2 @@
 # ufsgen
-Mission generator for the Under Falling Skies boardgame. Generator originally created by Ric Berridge.
+Mission generator for the board game Under Falling Skies. Generator originally created by Ric Berridge.
