@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Under Falling Skies Mission Randomiser</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="general.css" />
+  </head>
+  <body onLoad=load()>
+    <div class="header1 first">
+      <span class="mainheader">Under Falling Skies Mission Randomiser</span>
+      <div class="header2 normal" id="news">
+        <span class="header2">Version 0.1</span>
+      </div>
+    </div>
+    <div class="table" id="menu">
+      <ul class="menu">
+        <li onClick="randomiseDifficulty()">Randomise by difficulty level</li>
+        <li>
+          <label for="difficulty">Difficulty:</label>
+          <select name="difficulty" id="difficulty">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2" selected="selected">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
+        <li onClick="randomiseThreat()">Randomise by threat level</li>
+        <li>
+          <label for="threat">Threat:</label>
+          <select name="threat" id="threat">
+            <option value="0">0</option>
+            <option value="1" selected="selected">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <span class="boxouter">
+      <span class="boxinner">
+        <span class="boxheader">
+          Skies: (
+          <input type="checkbox" name="advancedSkies" id="advancedSkies">
+          <label for="advancedSkies">Advanced Skies</label>
+          )
+        </span>
+        <span class="boxcontent">
+          <span class="block" id="sky1">
+          Top Sky: <span id="sky1Text"></span>
+          </span>
+          <span class="block" id="sky2">
+          Upper Middle Sky: <span id="sky2Text"></span>
+          </span>
+          <span class="block" id="sky3">
+          Lower Middle Sky: <span id="sky3Text"></span>
+          </span>
+          <span class="block" id="sky4">
+          Bottom Sky: <span id="sky4Text"></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="boxouter" id="city">
+      <span class="boxinner">
+        <span class="boxheader">
+          City:
+        </span>
+        <span class="boxcontent">
+          <span class="block" id="cityName">
+            Roswell
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="boxouter" id="character">
+      <span class="boxinner">
+        <span class="boxheader">
+          <label for="characterCount">Character(s)</label> (
+      <select name="characterCount" id="characterCount">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2" selected="selected">2</option>
+        <option value="3">3</option>
+      </select>
+          ):
+        </span>
+        <span class="boxcontent">
+          <span class="block" id="characterName1">
+            None
+          </span>
+          <span class="block" id="characterName2">
+            None
+          </span>
+          <span class="block" id="characterName3">
+            None
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="boxouter" id="scenario">
+      <span class="boxinner">
+        <span class="boxheader">
+          Scenario:
+        </span>
+        <span class="boxcontent">
+          <span class="block" id="scenarioName">
+            No Scenario
+          </span>
+        </span>
+      </span>
+    </span>
+    <div class="header2 normal">
+    <div>Under Falling Skies is a board game published by CGE and designed by Tomas Uhlir. No challenge to their rights is intended.</div>
+    <div>How this randomiser works: </div>
+    <div>If you select difficulty level the randomiser will first determine a scenario. On difficulty 0, there is no scenario, on 1 there is a 50% chance of getting one, and on 2+ you will always get a scenario. The scenarios themselves are evenly random. Next a city is chosen, again at complete random. Then characters are chosen according to the drop down box. There is a 20% chance any given character will be their advanced version, and the gold star this produces will affect the sky choices. Finally the remaining black stars are assigned to the sky, and if 1 star ends up on a piece there is a 50% chance of either the advanced tile on the easier side or the basic tile on the harder side if the Advanced Skies box is ticked.</div>
+    <div>If you select threat level, the randomiser will first determine a scenario. If threat is 0, then there is a chance of no scenario, otherwise you're guaranteed one. Next a city is chosen at random. Then characters are chosen according to the drop down box. There is a 20% chance of a character being their advanced version. Then the randomiser looks at your chosen threat level and picks that many sky tiles to be on their hard side. If you've selected Advanced Skies then each piece also had a 25% chance to be their advanced version. Note that the difficulty is not worked out for this button.</div>
+    <script type="text/javascript" src="ufs.js"></script>
+  </body>
+</html>
