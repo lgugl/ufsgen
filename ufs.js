@@ -82,7 +82,7 @@ function randomiseDifficulty(){
   document.getElementById("characterName3").innerHTML = "None";
   var e = document.getElementById("characterCount");
   var characterCount = e.options[e.selectedIndex].value;
-  var remainingCharacters = characterCount;
+  var remainingCharacters = parseInt(characterCount, 10);
   var chosenCharacters = [0, 0, 0];
   while (remainingCharacters) {
     var character = Math.floor(Math.random() * maxCharacters);
