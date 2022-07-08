@@ -5,8 +5,261 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="general.css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="general.css" /> -->
+    <link rel="stylesheet" href="bulma.min.css">
+
   </head>
+
+  <body onload="load();">
+
+    <div class="hero is-primary is-flex-direction-row">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <h1 class="title">Under Falling Skies Mission Randomiser</h1>
+          <h2 class="subtitle">Version 0.2</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="section container is-max-desktop">
+
+<!--      <h1 class="title">Under Falling Skies Mission Randomiser</h1>-->
+<!--      <h2 class="subtitle">Version 0.1</h2>-->
+
+      <div class="panel">
+
+        <h2 class="panel-heading">Setup</h2>
+
+
+        <div class="p-5">
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left mr-0">
+              <label class="label" for="difficulty">Difficulty level:</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="select">
+                  <select name="difficulty" id="difficulty" style="padding:0 4em;">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button is-primary" onclick="randomiseDifficulty()">Randomise by difficulty level</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel-block p-0"></div>
+
+        <div class="p-5">
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left mr-0">
+              <label class="label" for="threat">Threat level:</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="select">
+                  <select name="threat" id="threat" style="padding:0 4em;">
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button is-primary" onclick="randomiseThreat()">Randomise by threat level</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel-block p-0"></div>
+
+        <div class="p-5">
+
+          <div class="columns">
+
+            <div class="column">
+
+              <div class="field is-horizontal">
+                <div class="field-label has-text-left">
+                  <label class="label" for="advancedSkies">Advanced skies:</label>
+                </div>
+                <div class="field-body is-flex-grow-2">
+                  <div class="field">
+                    <input type="checkbox" name="advancedSkies" id="advancedSkies">
+                  </div>
+                </div>
+              </div>
+
+              <!--<p>
+                <label class="label" for="advancedSkies">Advanced skies: <input class="ml-3" type="checkbox" name="advancedSkies" id="advancedSkies"></label>
+              </p>-->
+
+            </div>
+
+            <div class="column">
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal has-text-left">
+                  <label class="label" for="characterCount">Character(s):</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="select">
+                      <select name="characterCount" id="characterCount">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h2 class="panel-heading">Results</h2>
+
+        <div class="p-5">
+
+          <div class="message">
+            <div class="message-header">Skies</div>
+            <div class="message-body p-2">
+              <table class="table is-narrow is-fullwidth">
+                <thead>
+                  <tr class="has-background-primary">
+                    <th class="has-text-light">Sky Position</th>
+                    <th class="has-text-light">Sky Level</th>
+                    <th class="has-text-light">Sky Side</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Top</th>
+                    <td><span id="sky1Level"></span></td>
+                    <td><span id="sky1Diff"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Upper Middle</th>
+                    <td><span id="sky2Level"></span></td>
+                    <td><span id="sky2Diff"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Lower Middle</th>
+                    <td><span id="sky3Level"></span></td>
+                    <td><span id="sky3Diff"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Bottom</th>
+                    <td><span id="sky4Level"></span></td>
+                    <td><span id="sky4Diff"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="columns">
+
+            <div class="column">
+
+              <div class="message">
+                <div class="message-header">City</div>
+                <div class="message-body">
+                  <span id="cityName">Roswell</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="column">
+
+              <div class="message">
+                <div class="message-header">Scenario</div>
+                <div class="message-body">
+                  <span id="scenarioName">No Scenario</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="message">
+            <div class="message-header">Character(s)</div>
+            <div class="message-body">
+              <p id="characterName1">-</p>
+              <p id="characterName2">-</p>
+              <p id="characterName3">-</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <article class="message">
+        <div class="message-body content">
+          <p>Under Falling Skies is a board game published by CGE and designed by Tomas Uhlir. No challenge to their
+            rights is intended.</p>
+          <p>How this randomiser works: </p>
+          <p>If you select difficulty level the randomiser will first determine a scenario. On difficulty 0, there is
+            no
+            scenario, on 1 there is a 50% chance of getting one, and on 2+ you will always get a scenario. The scenarios
+            themselves are evenly random. Next a city is chosen, again at complete random. Then characters are chosen
+            according to the drop down box. There is a 20% chance any given character will be their advanced version,
+            and
+            the gold star this produces will affect the sky choices. Finally the remaining black stars are assigned to
+            the
+            sky, and if 1 star ends up on a piece there is a 50% chance of either the advanced tile on the easier side
+            or
+            the basic tile on the harder side if the Advanced Skies box is ticked.</p>
+          <p>If you select threat level, the randomiser will first determine a scenario. If threat is 0, then there is
+            a
+            chance of no scenario, otherwise you're guaranteed one. Next a city is chosen at random. Then characters are
+            chosen according to the drop down box. There is a 20% chance of a character being their advanced version.
+            Then
+            the randomiser looks at your chosen threat level and picks that many sky tiles to be on their hard side. If
+            you've selected Advanced Skies then each piece also had a 25% chance to be their advanced version. Note that
+            the
+            difficulty is not worked out for this button.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <script src="ufs.js"></script>
+
+  </body>
+
+
+
+  <!--
   <body onLoad=load()>
     <div class="header1 first">
       <span class="mainheader">Under Falling Skies Mission Randomiser</span>
@@ -121,4 +374,5 @@
     <div>If you select threat level, the randomiser will first determine a scenario. If threat is 0, then there is a chance of no scenario, otherwise you're guaranteed one. Next a city is chosen at random. Then characters are chosen according to the drop down box. There is a 20% chance of a character being their advanced version. Then the randomiser looks at your chosen threat level and picks that many sky tiles to be on their hard side. If you've selected Advanced Skies then each piece also had a 25% chance to be their advanced version. Note that the difficulty is not worked out for this button.</div>
     <script type="text/javascript" src="ufs.js"></script>
   </body>
+-->
 </html>

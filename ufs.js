@@ -77,9 +77,7 @@ function randomiseDifficulty(){
 
   //Lets pick some characters
   //First, reset the existing boxes
-  document.getElementById("characterName1").innerHTML = "None";
-  document.getElementById("characterName2").innerHTML = "None";
-  document.getElementById("characterName3").innerHTML = "None";
+  resetCharacters();
   var e = document.getElementById("characterCount");
   var characterCount = e.options[e.selectedIndex].value;
   var remainingCharacters = parseInt(characterCount, 10);
@@ -120,7 +118,7 @@ function randomiseDifficulty(){
   while (remainingDifficulty) {
     var piece = Math.floor(Math.random() * 4); //0-3 because we're indexing from 0 here.
     var maxSky = 1; // 0-1 if not advanced, 0-2 if advanced is ticked
-    if (advancedSkies) { maxSky ++; };
+    if (advancedSkies) { maxSky ++; }
     if (sky[piece] !== maxSky){ //Check if piece is maxed out
       sky[piece] ++;
       remainingDifficulty --;
@@ -129,29 +127,26 @@ function randomiseDifficulty(){
   for (i=0; i<4; i++){
     switch (sky[i]) {
       case 0:
-        sky[i] = "Basic sky (easy side)";
+        sky[i] = ["Basic", "Easy"];
         break;
       case 1: //need to pick basic hard or advanced easy
         chance = Math.floor(Math.random() * 2);
         if (chance && advancedSkies){ //Can only be hard if advanced is ticked
-          sky[i] = "Basic sky (hard side)";
+          sky[i] = ["Basic", "Hard"];
         } else {
-          sky[i] = "Advanced sky (easy side)";
+          sky[i] = ["Advanced", "Easy"];
         }
         break;
       case 2:
-        sky[i] = "Advanced sky (hard side)";
+        sky[i] = ["Advanced", "Hard"];
         break;
       default:
-        sky[i] = "Code broken, consult dev";
+        sky[i] = ["Code broken", "consult dev"];
     }
   }
   //Then print to screen. Yes, these are all out by one because the array indexes from 0 and the html from 1
-  document.getElementById("sky1Text").innerHTML = sky[0];
-  document.getElementById("sky2Text").innerHTML = sky[1];
-  document.getElementById("sky3Text").innerHTML = sky[2];
-  document.getElementById("sky4Text").innerHTML = sky[3];
-};
+  updateSkies(sky);
+}
 
 function randomiseThreat(){
   e = document.getElementById("threat");
@@ -185,9 +180,7 @@ function randomiseThreat(){
 
   //Lets pick some characters
   //First, reset the existing boxes
-  document.getElementById("characterName1").innerHTML = "None";
-  document.getElementById("characterName2").innerHTML = "None";
-  document.getElementById("characterName3").innerHTML = "None";
+  resetCharacters();
   var e = document.getElementById("characterCount");
   var characterCount = e.options[e.selectedIndex].value;
   var remainingCharacters = characterCount;
@@ -238,14 +231,14 @@ function randomiseThreat(){
           var chance = Math.floor(Math.random() * 4); //25% chance of advanced
           if (chance > 1) { chance = 0; } // Maps 0->0, 1->1, 2->0, 3->0, leaving a 1 in 4 chance of a 1
           if (chance) {
-            sky[i] = "Advanced sky (easy side)";
+            sky[i] = ["Advanced", "Easy"];
           }
           else {
-            sky[i] = "Basic sky (easy side)";
+            sky[i] = ["Basic", "Easy"];
           }
         }
         else {
-          sky[i] = "Basic sky (easy side)";
+          sky[i] = ["Basic", "Easy"];
         }
         break;
       case 1: //Hard sky
@@ -253,23 +246,37 @@ function randomiseThreat(){
           var chance = Math.floor(Math.random() * 4); //25% chance of advanced
           if (chance > 1) { chance = 0; } // Maps 0->0, 1->1, 2->0, 3->0, leaving a 1 in 4 chance of a 1
           if (chance) {
-            sky[i] = "Advanced sky (hard side)";
+            sky[i] = ["Advanced", "Hard"];
           }
           else {
-            sky[i] = "Basic sky (hard side)";
+            sky[i] = ["Basic", "Hard"];
           }
         }
         else {
-          sky[i] = "Basic sky (hard side)";
+          sky[i] = ["Basic", "Hard"];
         }
         break;
       default: //Should not happen!
-        sky[i] = "Issue detected, contact Dev";
+        sky[i] = ["Issue detected, contact Dev"];
     }
   }
   //Then print to screen. Yes, these are all out by one because the array indexes from 0 and the html from 1
-  document.getElementById("sky1Text").innerHTML = sky[0];
-  document.getElementById("sky2Text").innerHTML = sky[1];
-  document.getElementById("sky3Text").innerHTML = sky[2];
-  document.getElementById("sky4Text").innerHTML = sky[3];
-};
+  updateSkies(sky)
+}
+
+function updateSkies(sky) {
+  document.getElementById("sky1Level").innerHTML = sky[0][0];
+  document.getElementById("sky2Level").innerHTML = sky[1][0];
+  document.getElementById("sky3Level").innerHTML = sky[2][0];
+  document.getElementById("sky4Level").innerHTML = sky[3][0];
+  document.getElementById("sky1Diff").innerHTML = sky[0][1];
+  document.getElementById("sky2Diff").innerHTML = sky[1][1];
+  document.getElementById("sky3Diff").innerHTML = sky[2][1];
+  document.getElementById("sky4Diff").innerHTML = sky[3][1];
+}
+
+function resetCharacters() {
+  document.getElementById("characterName1").innerHTML = "-";
+  document.getElementById("characterName2").innerHTML = "-";
+  document.getElementById("characterName3").innerHTML = "-";
+}
