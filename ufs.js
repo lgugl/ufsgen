@@ -125,16 +125,21 @@ function randomiseDifficulty(){
     }
   }
   for (i=0; i<4; i++){
+    // difficulty level = 0, 1 or 2
     switch (sky[i]) {
       case 0:
         sky[i] = ["Basic", "Easy"];
         break;
       case 1: //need to pick basic hard or advanced easy
-        chance = Math.floor(Math.random() * 2);
-        if (chance && advancedSkies){ //Can only be hard if advanced is ticked
+        if (!advancedSkies) { //Can only be hard if advanced skies is NOT ticked
           sky[i] = ["Basic", "Hard"];
         } else {
-          sky[i] = ["Advanced", "Easy"];
+          chance = Math.floor(Math.random() * 2);
+          if (chance){
+            sky[i] = ["Basic", "Hard"];
+          } else {
+            sky[i] = ["Advanced", "Easy"];
+          }
         }
         break;
       case 2:
